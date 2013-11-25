@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Robot {
 	
 	private int nbKac = 16;
-	private String nom ="R1";
+	private String nom ;
 	private ArrayList<Tache> mesTaches ;
 
 	public Robot(Tache t ,Tache t2, Tache t3){ // Constructeur
@@ -13,9 +13,9 @@ public class Robot {
 		this.mesTaches.add(t3);
 	}
 	
-	public void synchronized travaille(){
+	public synchronized void travaille(){
 		for(int i=0;i<=this.mesTaches.size();i++){
-			this.mesTaches.get(i).init();
+			this.mesTaches.get(i).run();
 			this.tenteRecharge(); 
 			if(i==2){
 				i=0;
