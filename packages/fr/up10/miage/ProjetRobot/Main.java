@@ -5,11 +5,11 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Tache t1 = new Tache1();
-		Tache t2 = new Tache2();
-		Tache t3 = new Tache3();
-		Tache t4 = new Tache4();
-		Tache t5 = new Tahce5();
+		Tache1 t1 = new Tache1();
+		Tache2 t2 = new Tache2();
+		Tache3 t3 = new Tache3();
+		Tache4 t4 = new Tache4();
+		Tache5 t5 = new Tahce5();
 		Robot R1 = new Robot(t1,t3,t4);
 		Robot R2 = new Robot(t2,t3,t5);
 		Robot R3 = new Robot(t1,t2,t5);
