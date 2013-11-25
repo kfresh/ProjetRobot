@@ -5,44 +5,47 @@ public class Tache1 extends Tache{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Le robot de présente à la tâche 1");
+		tri(genererTableau());
+		System.out.println("Tache 1 terminé");
 	}
 
 	@Override
 	public int[] genererTableau() {
-		return null;
-		// TODO Auto-generated method stub
+		super.tab = new int[super.nb];
+		for(int i=0;i<super.nb-1;i++){
+			int a = (int) Math.random()*100+1;
+			tab[i] = a;
+		}
+		return tab;
+		
 		
 	}
 
+	public void permuter(int tableau[], int i, int j){
+		int temp; 
+		temp = tableau[i];
+		tableau[i] = tableau[j]; 
+		tableau[j] = temp; 
+		}
+	
 	@Override
 	public void tri(int[] t) {
 
-		int fin,ind; 
-		fin=N-1; 
+		int fin,i; 
+		fin=(t.length -1); 
 		boolean permut=true; 
 		do { 
 			permut=false; 
-			for(ind=0;ind<fin;ind++){ 
-				if (tabVal[ind]>tabVal[ind+1]){
-					permuter(tabVal,ind,ind+1); 
+			for(i=0;i<fin;i++){ 
+				if (t[i]>t[i+1]){
+					permuter(t,i,i+1); 
 					permut=true; 
 					} 
 				} fin=fin-1; 
 				} while((permut==true)&&(fin>=1)); 
 		}
-	public void permuter(int tableau[], int i, int j){
-		int temp; 
-		temp = tableau;
-		tableau = tableau[j]; 
-		tableau[j] = temp; 
-		}
-
-	Lire plus � propos de bulles sur www.security-helpzone.com
-
-
-	}
+	
 
 
 }
