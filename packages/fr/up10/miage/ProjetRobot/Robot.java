@@ -11,6 +11,8 @@ public class Robot {
 	private ArrayList<Tache> mesTaches ;
 
 	public Robot(Tache t ,Tache t2, Tache t3){ // Constructeur
+		
+		this.mesTaches = new ArrayList<Tache>();
 		this.mesTaches.add(t);
 		this.mesTaches.add(t2);
 		this.mesTaches.add(t3);
