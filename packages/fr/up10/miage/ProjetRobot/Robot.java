@@ -19,11 +19,13 @@ public class Robot {
 	}
 	
 	public synchronized void travaille(){
-		for(int i=0;i<=this.mesTaches.size();i++){
+		for(int i=0;i<=this.mesTaches.size()-1;i++){
+			System.out.println(mesTaches.size());
+			System.out.println("iii = "+ i );
 			this.mesTaches.get(i).run();
 			this.tenteRecharge(); 
 			if(i==2){
-				i=0;
+				i=-1;
 			}
 			
 			}

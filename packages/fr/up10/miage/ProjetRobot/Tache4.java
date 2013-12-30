@@ -5,13 +5,21 @@ public class Tache4 extends Tache {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		System.out.println("Le robot dÃ©bute la tÃ¢che 4 préééé");
+		tri(genererTableau());
+		System.out.println("Tache 4 terminÃ©");
 		
 	}
 
 	@Override
 	public int[] genererTableau() {
 		// TODO Auto-generated method stub
-		return null;
+		super.tab = new int[super.nb];
+		for(int i=0;i<super.nb-1;i++){
+			int a = (int) Math.random()*100+1;
+			tab[i] = a;
+		}
+		return tab;
 	}
 
 	@Override

@@ -4,7 +4,7 @@ public class Tache3 extends Tache {
 
 	@Override
 	public void run() {
-		System.out.println("Le robot dÃ©bute la tÃ¢che 3");
+		System.out.println("Le robot dÃ©bute la tÃ¢che 3 préééé");
 		tri(genererTableau());
 		System.out.println("Tache 3 terminÃ©");
 		
