@@ -1,11 +1,13 @@
 package fr.up10.miage.ProjetRobot;
 
 public class Tache4 extends Tache {
+	
+	
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		System.out.println("Le robot débute la tache 4");
+		System.out.println("débute la tache 4");
 		tri(genererTableau());
 		System.out.println("Tache 4 terminée");
 		
@@ -24,43 +26,36 @@ public class Tache4 extends Tache {
 
 	@Override
 	public void tri(int[] t) {
-		// TODO Auto-generated method stub
-		System.out.println("Le robot dÃ©bute Ã  la tÃ¢che 4");
-		tri(genererTableau());
-		System.out.println("Tache 1 terminÃ©");
+		int taille = 74;
+		triDeShell(genererTableau(),taille);
+		
 	}
 
-	 private static int partition(int tableau[],int deb,int fin)
-     {
-     int compt=deb;
-     int pivot=tableau[deb];
-     
-     for(int i=deb+1;i<=fin;i++)
-         {
-         if (tableau[i]<pivot)
-             {
-             compt++;
-             echanger(tableau,compt,i);
-             }
-         }
-     echanger(tableau,deb,compt);
-     return(compt);
-     }
+	public static void triDeShell(int [] tab,int tailleLogique){
+		   int pas = 1;
+		   while( pas < tailleLogique/9) {
+		      pas = pas*3 + 1; // on fixe le premier pas
+		   }
+		   while (pas > 0) {  // boucle sur les différents pas         
+		      for(int s = 0; s <= pas-1; s++) {  // boucle sur les séries
+		         int positionEltAInserer = s+ pas;  // tri par insertion
+		 
+		         while(positionEltAInserer < tailleLogique) {
+		            int elementAInserer = tab[positionEltAInserer];
+		            int posElemCompare = positionEltAInserer - pas;
+		 
+		            while ((posElemCompare >= 0) && (elementAInserer < tab[posElemCompare])) {
+		               tab[posElemCompare + pas] = tab[posElemCompare];
+		               posElemCompare -= pas;
+		            }
+		            tab [posElemCompare + pas] = elementAInserer;
+		            positionEltAInserer += pas;
+		         }
+		      }        
+		   pas = pas/3;
+		   }
+		}
 
- private static void triRapide(int tableau[],int deb,int fin)
-     {
-     if(deb<fin)
-         {
-         int positionPivot=partition(tableau,deb,fin);
-         triRapide(tableau,deb,positionPivot-1);
-         triRapide(tableau,positionPivot+1,fin);
-         }
-     }
  
- private static void echanger(int tableau[],int i,int j)
- {
- int memoire=tableau[i];
- tableau[i]=tableau[j];
- tableau[j]=memoire;
- }
+
 }
