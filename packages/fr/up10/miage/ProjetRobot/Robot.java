@@ -4,24 +4,25 @@ package fr.up10.miage.ProjetRobot;
 import java.util.ArrayList;
 
 
-public class Robot {
+public class Robot extends Thread{
 	
 	private int nbKac = 16;
 	private String nom ;
 	private ArrayList<Tache> mesTaches ;
 
-	public Robot(Tache t ,Tache t2, Tache t3){ // Constructeur
+	public Robot(String nom, Tache t ,Tache t2, Tache t3){ // Constructeur
 		
+		this.nom=nom;
+			
 		this.mesTaches = new ArrayList<Tache>();
 		this.mesTaches.add(t);
 		this.mesTaches.add(t2);
 		this.mesTaches.add(t3);
 	}
 	
-	public synchronized void travaille(){
+	public void run(){
 		for(int i=0;i<=this.mesTaches.size()-1;i++){
-			System.out.println(mesTaches.size());
-			System.out.println("iii = "+ i );
+			System.out.println(this.nom );
 			this.mesTaches.get(i).run();
 			this.tenteRecharge(); 
 			if(i==2){

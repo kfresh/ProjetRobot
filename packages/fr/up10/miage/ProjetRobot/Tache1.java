@@ -3,12 +3,13 @@ package fr.up10.miage.ProjetRobot;
 
 public class Tache1 extends Tache{
 
-	@Override
 	public void run() {
-		System.out.println("Le robot débute à la tâche 1");
+		// TODO Auto-generated method stub
+		System.out.println(" d�bute la tache 1");
 		tri(genererTableau());
-		System.out.println("Tache 1 terminé");
+		System.out.println("Tache 1 termin�e");
 	}
+
 
 	@Override
 	public int[] genererTableau() {
@@ -45,6 +46,11 @@ public class Tache1 extends Tache{
 				} fin=fin-1; 
 				} while((permut==true)&&(fin>=1)); 
 		}
+
+
+
+
+
 	
 
 

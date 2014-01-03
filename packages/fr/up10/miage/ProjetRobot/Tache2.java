@@ -5,9 +5,9 @@ public class Tache2 extends Tache {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		System.out.println("Le robot débute à la tâche 2");
+		System.out.println("d�bute la tache 2");
 		tri(genererTableau());
-		System.out.println("Tache 1 terminé");
+		System.out.println("Tache 2 termin�e");
 	}
 
 	@Override
