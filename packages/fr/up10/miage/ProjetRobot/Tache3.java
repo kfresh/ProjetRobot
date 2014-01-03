@@ -14,7 +14,7 @@ public class Tache3 extends Tache {
 	public int[] genererTableau() {
 		super.tab = new int[super.nb];
 		for(int i=0;i<super.nb-1;i++){
-			int a = (int) Math.random()*100+1;
+			int a = (int) Math.random()*10000+1;
 			tab[i] = a;
 		}
 		return tab;

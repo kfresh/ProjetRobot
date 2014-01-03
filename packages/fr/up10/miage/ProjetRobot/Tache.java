@@ -5,7 +5,7 @@ public abstract class Tache implements Runnable {
 
 	
 	protected int[] tab;
-	protected int nb = 5000;
+	protected int nb = 50000;
 	
 	public abstract int[] genererTableau();
 	public abstract void tri(int[] t);
