@@ -14,7 +14,7 @@ public class Main {
 		Tache5 t5 = new Tache5();
 		Robot R1 = new Robot("Robot1",t4,t3,t5);
 		Robot R2 = new Robot("Robot2",t2,t3,t5);
-		Robot R3 = new Robot("Robot3",t1,t2,t5);
+		Robot R3 = new Robot("Robot3",t1,t4,t5);
 		Robot R4 = new Robot("Robot4",t3,t1,t5);
 		Robot R5 = new Robot("Robot5",t2,t1,t4);
 		
