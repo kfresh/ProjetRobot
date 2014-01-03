@@ -33,7 +33,10 @@ public class Robot extends Thread{
 		notifyAll();
 	}
 		
-	public void tenteRecharge(){} /* plus tard */
+	public void tenteRecharge(){
+		
+		
+	} /* plus tard */
 
 
 }
