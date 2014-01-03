@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Robot extends Thread{
 	
-	private int nbKac = 16;
+	private int nbKac = 18;
 	private String nom ;
 	private ArrayList<Tache> mesTaches ;
 	private Station maStation;
@@ -22,10 +22,16 @@ public class Robot extends Thread{
 		this.mesTaches.add(t3);
 	}
 	
-	public void run(){
+	public Robot(){
+		
+	}
+	
+	public synchronized void run(){
 		for(int i=0;i<=this.mesTaches.size()-1;i++){
-			System.out.println(this.nom );
+			System.out.println(this.nom +" debute la tache " + this.mesTaches.get(i).getClass().getSimpleName());
 			this.mesTaches.get(i).run();
+			this.nbKac = nbKac - 4 ;
+			System.out.println(" la tache " + this.mesTaches.get(i).getClass().getSimpleName() +" est terminée par "+ this.nom);
 			this.tenteRecharge(); 
 			if(i==2){
 				i=-1;
@@ -35,18 +41,29 @@ public class Robot extends Thread{
 		notifyAll();
 	}
 		
-	public void tenteRecharge(){
+	public synchronized void tenteRecharge(){
 		if ((maStation.getNbRobots() == 0) || nbKac <= 4){
+			
+		
+				//maStation.notify();
+			
+			
 			maStation.chargerRobot(this);
+			
 		}
 		else {
-			System.out.println(this.nom + " peut entamer une nouvelle tache.");
+
+			System.out.println(this.nom + " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.");
 		}
 		
 	} /* plus tard */
 
 	public String getNom(){
 		return this.nom;
+	}
+	
+	public void remplirBatterie(){
+		nbKac = 16;
 	}
 
 }

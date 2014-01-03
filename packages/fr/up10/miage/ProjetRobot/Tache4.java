@@ -7,9 +7,9 @@ public class Tache4 extends Tache {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		System.out.println("débute la tache 4");
+
 		tri(genererTableau());
-		System.out.println("Tache 4 terminée");
+
 		
 	}
 

@@ -6,40 +6,47 @@ public class Station extends Thread{
 	private int nbRobots;
 	
 	public Station(){
-		Robot[] FiledAttente = new Robot[3];
+		this.filedAttente = new Robot[3];
 		nbRobots = 0;
 	}
 	
 	@SuppressWarnings("static-access")
-	public void run(){
+	public synchronized void run(){
 		
-		if (robotEncharge != null){
 			try {
-				
-				robotEncharge.sleep(3000);
+				this.wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		while (robotEncharge != null){
+			try {
+				System.out.println(robotEncharge.getNom()+" en train de recharger [...]");
+				this.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			System.out.println("Recharge du robot " + robotEncharge.getNom() + " terminée");
-			robotEncharge = null;
+			
+			nbRobots = nbRobots--;
+			robotEncharge = filedAttente[0];
+			filedAttente[0]=filedAttente[1];
+			filedAttente[1]=filedAttente[2];
+			filedAttente[2]=null;
+			
+			if (robotEncharge == null){
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
 		}
-		else{
-			if (filedAttente[0] != null){
-				
-				robotEncharge = filedAttente[0];
-				filedAttente[0]=filedAttente[1];
-				filedAttente[1]=filedAttente[2];
-				filedAttente[2]=null;
-				
-			}
-			else{
-				filedAttente[0]=filedAttente[1];
-				filedAttente[1]=filedAttente[2];
-				filedAttente[2]=null;
-			}
-		}
+		
 	}
 	
 	public boolean stationPleine(){
@@ -50,15 +57,22 @@ public class Station extends Thread{
 			return false;
 		}
 	}
-	public void chargerRobot(Robot unRobot){
+	public synchronized void chargerRobot(Robot unRobot){
 		if (nbRobots < 4){
 			if (nbRobots == 0){
+				
 				robotEncharge = unRobot;
-				System.out.println(unRobot.getNom()+" en train de recharger");
+				
+				nbRobots ++;
+
 			}
 			else{
-				filedAttente[nbRobots-2] = unRobot;
-			System.out.println(unRobot.getNom()+" en file d'attente");	
+					
+
+				filedAttente[nbRobots-1] = unRobot;
+
+			System.out.println(unRobot.getNom()+" en file d'attente");
+			nbRobots ++;
 			}
 			}
 		else{

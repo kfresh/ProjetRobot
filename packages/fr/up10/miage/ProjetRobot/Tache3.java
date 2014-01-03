@@ -4,9 +4,9 @@ public class Tache3 extends Tache {
 
 	@Override
 	public void run() {
-		System.out.println("débute la tache 3 ");
+
 		tri(genererTableau());
-		System.out.println("Tache 3 terminée");
+	
 		
 	}
 

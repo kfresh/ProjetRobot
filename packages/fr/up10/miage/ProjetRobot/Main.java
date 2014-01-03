@@ -8,6 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Station laStation = new Station();
+		laStation.start();
 		Tache1 t1 = new Tache1();
 		Tache2 t2 = new Tache2();
 		Tache3 t3 = new Tache3();
@@ -18,6 +19,8 @@ public class Main {
 		Robot R3 = new Robot("Robot3",laStation,t1,t4,t5);
 		Robot R4 = new Robot("Robot4",laStation, t3,t1,t5);
 		Robot R5 = new Robot("Robot5",laStation, t2,t1,t4);
+		
+		
 		
 		R1.start();
 		R2.start();

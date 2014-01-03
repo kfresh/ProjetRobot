@@ -5,9 +5,10 @@ public class Tache1 extends Tache{
 
 	public void run() {
 		// TODO Auto-generated method stub
-		System.out.println(" débute la tache 1");
+
 		tri(genererTableau());
-		System.out.println("Tache 1 terminée");
+		
+
 	}
 
 
