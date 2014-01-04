@@ -41,11 +41,14 @@ public class Robot extends Thread{
 		notifyAll();
 	}
 		
-	public synchronized void tenteRecharge(){
+	public  void tenteRecharge(){
+		synchronized(maStation){
+			
+		
 		if ((maStation.getNbRobots() == 0) || nbKac <= 4){
 			
 		
-				//maStation.notify();
+				maStation.notify();
 			
 			
 			maStation.chargerRobot(this);
@@ -54,6 +57,7 @@ public class Robot extends Thread{
 		else {
 
 			System.out.println(this.nom + " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.");
+		}
 		}
 		
 	} /* plus tard */
