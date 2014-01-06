@@ -15,7 +15,7 @@ public class Station extends Thread {
 		nbRobots = 0;
 	}
 
-	@SuppressWarnings("static-access")
+	@SuppressWarnings("static-access") 
 	public synchronized void run() {
 		try {
 			this.wait();
@@ -26,10 +26,11 @@ public class Station extends Thread {
 
 		while (robotEncharge != null) {
 			try {
-				
+
 				System.out.println(robotEncharge.getNom()
 						+ " en train de recharger [...]");
-				text=robotEncharge.getNom()+ " en train de recharger [...]";
+				text = robotEncharge.getNom() + " en train de recharger [...]"+"\r\n";
+				//robotEncharge.setText(text);
 				this.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -38,7 +39,10 @@ public class Station extends Thread {
 			robotEncharge.remplirBatterie();
 			System.out.println("Recharge du robot " + robotEncharge.getNom()
 					+ " termin�e");
-			text +="Recharge du robot " + robotEncharge.getNom()+ " termin�e"+"\r\n";
+			text += "Recharge du robot " + robotEncharge.getNom() + " termin�e"
+					+ "\r\n";
+			//robotEncharge.setText(text);
+			
 			nbRobots = nbRobots - 1;
 			robotEncharge = filedAttente[0];
 			filedAttente[0] = filedAttente[1];
@@ -46,8 +50,9 @@ public class Station extends Thread {
 			filedAttente[2] = null;
 
 			System.out.println(nbRobots + " ROBOTS EN STATION");
-			text +=nbRobots + " ROBOTS EN STATION ";
-			ecrireFichier(text);
+			text += nbRobots + " ROBOTS EN STATION " +"\r\n";
+
+			
 			if (robotEncharge == null) {
 				try {
 					this.wait();
@@ -81,35 +86,42 @@ public class Station extends Thread {
 			} else {
 
 				filedAttente[nbRobots - 1] = unRobot;
-
 				System.out.println(unRobot.getNom() + " en file d'attente");
 				nbRobots++;
+				text += unRobot.getNom() + " en file d'attente"+"\r\n";
+				//robotEncharge.setText(text);
 			}
 		} else {
 			System.out.println("La Station est pleine");
-
+			text += "La Station est pleine"+"\r\n";	
+			//robotEncharge.setText(text);
 		}
+		appelEcrire();
+		
 	}
 
 	public int getNbRobots() {
 		return nbRobots;
 	}
-
-	public void ecrireFichier(String t){
-		 String nomf = "C:/Users/auangerv/Desktop/robot.txt";
-		 try{
-			 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(nomf)));
-			  /*out.println(this.nom +" debute la tache " + this.mesTaches.get(i).getClass().getSimpleName()+"\r\n");
-			  out.println("la tache " + this.mesTaches.get(i).getClass().getSimpleName() +" est termin�e par "+ this.nom +"\r\n");
-			  out.close();*/
-			 
-			 out.write(t+"\r\n");
-			 out.flush();
-			 out.close();
-		 }catch(Exception e){
-			 e.printStackTrace();
-			}
-
-}
 	
+	public void appelEcrire(){
+		ecrireFichier(text);
+	}
+
+	public void ecrireFichier(String t) {
+		String nomf = "robot.txt";
+		try {
+			PrintWriter out = new PrintWriter(new BufferedWriter(
+					new FileWriter(nomf)));
+
+			out.write(t + "\r\n");
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+
 }

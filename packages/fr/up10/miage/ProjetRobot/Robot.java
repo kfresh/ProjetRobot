@@ -9,6 +9,8 @@ public class Robot extends Thread {
 	private String nom;
 	private ArrayList<Tache> mesTaches;
 	private Station maStation;
+	private String text;
+	
 
 	public Robot(String nom, Station maStation, Tache t, Tache t2, Tache t3) { // Constructeur
 
@@ -28,17 +30,19 @@ public class Robot extends Thread {
 
 				System.out.println(this.nom + " debute la tache "
 						+ this.mesTaches.get(i).getClass().getSimpleName());
+	
+				text =this.nom + " debute la tache "+ this.mesTaches.get(i).getClass().getSimpleName() ;
 
 				this.mesTaches.get(i).tri();
 				this.nbKac = nbKac - 4;
-				System.out.println(" la tache "
+				System.out.println("la tache "
 						+ this.mesTaches.get(i).getClass().getSimpleName()
 						+ " est termin�e par " + this.nom);
-
+				text +="la tache "
+						+ this.mesTaches.get(i).getClass().getSimpleName()
+						+ " est termin�e par " + this.nom +"\r\n";
 				this.tenteRecharge();
-				/*
-				 * if(i==2){ i=-1; }
-				 */
+	
 			}
 		}
 	}
@@ -49,18 +53,21 @@ public class Robot extends Thread {
 			if ((maStation.getNbRobots() == 0) || nbKac <= 4) {
 
 				maStation.notify();
-
+				
+				
 				maStation.chargerRobot(this);
 
 			} else {
 
 				System.out
 						.println(this.nom
-								+ " peut entamer une nouvelle tache car le rechargement imm�diat est indisponible et quil dispose de suffisament de Kac.");
+								+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.");
+				text += this.nom
+						+ " peut entamer une nouvelle tache car le rechargement imm�diat est indisponible et quil dispose de suffisament de Kac.";
 			}
 		}
 
-	} /* plus tard */
+	} 
 
 	public String getNom() {
 		return this.nom;
@@ -69,18 +76,12 @@ public class Robot extends Thread {
 	public void remplirBatterie() {
 		nbKac = 16;
 	}
+	public String getText(){
+		return this.text;
+	}
+	public void setText(String t){
+		this.text += t;
+	}
 
-	/*
-	 * public void ecrireFichier(){ String nomf =
-	 * "C:/Users/auangerv/Desktop/robot.txt"; try{ PrintWriter out = new
-	 * PrintWriter(new FileWriter(nomf)); out.println(this.nom
-	 * +" debute la tache " +
-	 * this.mesTaches.get(i).getClass().getSimpleName()+"\r\n");
-	 * out.println("la tache " +
-	 * this.mesTaches.get(i).getClass().getSimpleName() +" est termin�e par "+
-	 * this.nom +"\r\n"); out.close(); this.tenteRecharge(); }catch(Exception
-	 * e){ e.printStackTrace(); }
-	 * 
-	 * }
-	 */
+
 }
