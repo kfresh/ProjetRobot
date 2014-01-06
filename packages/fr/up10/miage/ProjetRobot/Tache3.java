@@ -1,28 +1,9 @@
 package fr.up10.miage.ProjetRobot;
 
 public class Tache3 extends Tache {
-
 	@Override
-	public void run() {
-
-		tri(genererTableau());
-	
-		
-	}
-
-	@Override
-	public int[] genererTableau() {
-		super.tab = new int[super.nb];
-		for(int i=0;i<super.nb-1;i++){
-			int a = (int) Math.random()*10000+1;
-			tab[i] = a;
-		}
-		return tab;
-		
-	}
-
-	@Override
-	public void tri(int[] t) {
+	public void tri() {
+		int[] t=genererTableau();
 		{
 		    int cpt;
 		    int element;

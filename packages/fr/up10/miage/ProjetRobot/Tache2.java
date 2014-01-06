@@ -1,29 +1,9 @@
 package fr.up10.miage.ProjetRobot;
 
 public class Tache2 extends Tache {
-
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-		tri(genererTableau());
-
-	}
-
-	@Override
-	public int[] genererTableau() {
-		// TODO Auto-generated method stub
-		super.tab = new int[super.nb];
-		for(int i=0;i<super.nb-1;i++){
-			int a = (int) Math.random()*10000+1;
-			tab[i] = a;
-		}
-		return tab;
-	}
-
-	@Override
-	public void tri(int[] t) {
-		// TODO Auto-generated method stub
+	public void tri() {
+		int[] t=genererTableau();
 		int longueur = t.length;
 		if (longueur > 0) {
 			triFusion(t, 0, longueur - 1);

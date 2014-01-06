@@ -1,31 +1,9 @@
 package fr.up10.miage.ProjetRobot;
 
 public class Tache4 extends Tache {
-	
-	
 
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-		tri(genererTableau());
-
-		
-	}
-
-	@Override
-	public int[] genererTableau() {
-		// TODO Auto-generated method stub
-		super.tab = new int[super.nb];
-		for(int i=0;i<super.nb-1;i++){
-			int a = (int) Math.random()*10000+1;
-			tab[i] = a;
-		}
-		return tab;
-	}
-
-	@Override
-	public void tri(int[] t) {
+	public void tri() {
 		int taille = 74;
 		triDeShell(genererTableau(),taille);
 		
@@ -36,8 +14,8 @@ public class Tache4 extends Tache {
 		   while( pas < tailleLogique/9) {
 		      pas = pas*3 + 1; // on fixe le premier pas
 		   }
-		   while (pas > 0) {  // boucle sur les différents pas         
-		      for(int s = 0; s <= pas-1; s++) {  // boucle sur les séries
+		   while (pas > 0) {  // boucle sur les diffï¿½rents pas         
+		      for(int s = 0; s <= pas-1; s++) {  // boucle sur les sï¿½ries
 		         int positionEltAInserer = s+ pas;  // tri par insertion
 		 
 		         while(positionEltAInserer < tailleLogique) {
