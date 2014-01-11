@@ -103,7 +103,9 @@ public class Station extends Thread {
 		text = unRobot.getNom() + " en Station" + "\r\n" + filedAttente.size()
 				+ " ROBOTS en Station ******************** \r\n";
 		f.setText(text);
+		f.ecrireFichier(f.getText());
 		this.notify();
+		
 
 	}
 

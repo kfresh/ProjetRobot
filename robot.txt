@@ -1,0 +1,76 @@
+ ************** Sauvegarde d'informations **************** 
+Robot4 debute la tache Tache3
+Robot1 debute la tache Tache4
+Robot3 debute la tache Tache1
+Robot5 debute la tache Tache2
+la tache Tache4 est terminé par Robot1
+la tache Tache4 a été réalisé 1 fois 
+Robot1 en Station
+1 ROBOTS en Station ******************** 
+la tache Tache3 est terminé par Robot4
+la tache Tache3 a été réalisé 1 fois 
+Robot4 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot4 debute la tache Tache1
+Robot1 en train de recharger [...]
+la tache Tache2 est terminé par Robot5
+la tache Tache2 a été réalisé 2 fois 
+Robot5 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot5 debute la tache Tache1
+la tache Tache2 est terminé par Robot2
+la tache Tache2 a été réalisé 2 fois 
+Robot2 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot2 debute la tache Tache3
+la tache Tache3 est terminé par Robot2
+la tache Tache3 a été réalisé 2 fois 
+Robot2 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot2 debute la tache Tache5
+Robot1 en train de recharger [...]
+Recharge du robot Robot1 terminé
+Robot1 en train de recharger [...]
+Recharge du robot Robot1 terminé
+Le robot Robot1 s'est rechargé 1 fois 
+Robot1 debute la tache Tache3
+la tache Tache3 est terminé par Robot1
+la tache Tache3 a été réalisé 3 fois 
+Robot1 en Station
+1 ROBOTS en Station ******************** 
+Robot1 en train de recharger [...]
+Robot1 en train de recharger [...]
+Recharge du robot Robot1 terminé
+Robot1 en train de recharger [...]
+Recharge du robot Robot1 terminé
+Le robot Robot1 s'est rechargé 2 fois 
+Robot1 debute la tache Tache5
+la tache Tache5 est terminé par Robot2
+la tache Tache5 a été réalisé 2 fois 
+Robot2 en Station
+1 ROBOTS en Station ******************** 
+Robot2 en train de recharger [...]
+Robot2 en train de recharger [...]
+Recharge du robot Robot2 terminé
+Robot2 en train de recharger [...]
+Recharge du robot Robot2 terminé
+Le robot Robot2 s'est rechargé 1 fois 
+Robot2 debute la tache Tache2
+la tache Tache2 est terminé par Robot2
+la tache Tache2 a été réalisé 3 fois 
+Robot2 en Station
+1 ROBOTS en Station ******************** 
+Robot2 en train de recharger [...]
+la tache Tache1 est terminé par Robot5
+la tache Tache1 a été réalisé 3 fois 
+Robot5 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot5 debute la tache Tache4
+la tache Tache4 est terminé par Robot5
+la tache Tache4 a été réalisé 2 fois 
+Robot5 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot5 debute la tache Tache2
+la tache Tache2 est terminé par Robot5
+la tache Tache2 a été réalisé 4 fois 
+Robot5 en Station
+2 ROBOTS en Station ******************** 
+la tache Tache5 est terminé par Robot1
+la tache Tache5 a été réalisé 2 fois 
+Robot1 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot1 debute la tache Tache4
+la tache Tache4 est terminé par Robot1
+la tache Tache4 a été réalisé 3 fois 
+Robot1 peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.Robot1 debute la tache Tache3
+la tache Tache3 est terminé par Robot1
+la tache Tache3 a été réalisé 4 fois 
+Robot1 en Station
+3 ROBOTS en Station ******************** 
+
