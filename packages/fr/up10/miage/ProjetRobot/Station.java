@@ -100,7 +100,8 @@ public class Station extends Thread {
 		System.out.println(unRobot.getNom() + " en Station");
 		System.out.println(filedAttente.size()
 				+ " ROBOTS en Station ********************");
-		text = unRobot.getNom() + " en Station" + "\r\n";
+		text = unRobot.getNom() + " en Station" + "\r\n" + filedAttente.size()
+				+ " ROBOTS en Station ******************** \r\n";
 		f.setText(text);
 		this.notify();
 
