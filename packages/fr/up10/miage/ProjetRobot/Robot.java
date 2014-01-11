@@ -1,6 +1,5 @@
 package fr.up10.miage.ProjetRobot;
 
-import java.io.*;
 import java.util.ArrayList;
 
 public class Robot extends Thread {
@@ -38,28 +37,35 @@ public class Robot extends Thread {
 						+ "\r\n";
 
 				f.setText(text);
+				if (nbKac <= 4) {
+					System.err
+							.println("ATTENTION: Energie critique - Impossible d'effectuer une tache");
+				} else {
+					this.mesTaches.get(i).tri();
+					this.nbKac = nbKac - 4;
+					System.out.println("la tache "
+							+ this.mesTaches.get(i).getClass().getSimpleName()
+							+ " est terminé par " + this.nom + " \r\n");
 
-				this.mesTaches.get(i).tri();
-				this.nbKac = nbKac - 4;
-				System.out.println("la tache "
-						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ " est terminé par " + this.nom);
+					text = "la tache "
+							+ this.mesTaches.get(i).getClass().getSimpleName()
+							+ " est terminé par " + this.nom + "\r\n";
+					f.setText(text);
 
-				text = "la tache "
-						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ " est terminé par " + this.nom + "\r\n";
-				f.setText(text);
+					System.out
+							.println("la tache "
+									+ this.mesTaches.get(i).getClass()
+											.getSimpleName()
+									+ " a été réalisé "
+									+ this.mesTaches.get(i).getNbTache()
+									+ " fois \r\n");
 
-				System.out.println("la tache "
-						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ " a été réalisé "
-						+ this.mesTaches.get(i).getNbTache() + " fois");
-
-				text = "la tache "
-						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ " a été réalisé "
-						+ this.mesTaches.get(i).getNbTache() + " fois \r\n";
-				f.setText(text);
+					text = "la tache "
+							+ this.mesTaches.get(i).getClass().getSimpleName()
+							+ " a été réalisé "
+							+ this.mesTaches.get(i).getNbTache() + " fois \r\n";
+					f.setText(text);
+				}
 
 				this.tenteRecharge();
 
@@ -67,24 +73,31 @@ public class Robot extends Thread {
 		}
 	}
 
-	public void tenteRecharge() {
-		synchronized (maStation) {
+	public synchronized void tenteRecharge() {
 
-			if ((maStation.getNbRobots() == 0) || nbKac <= 4) {
-
-				maStation.notify();
-
-				maStation.chargerRobot(this);
-
+		if ((maStation.getNbRobots() == 0) || nbKac <= 4) {
+			if (maStation.getNbRobots() < 4) {
+				maStation.ajouter(this);
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else {
-
 				System.out
-						.println(this.nom
-								+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.");
-				text = this.nom
-						+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.";
-				f.setText(text);
+						.println("La station est pleine - Le robot utilise sa recharge de secours \r\n");
+				this.remplirBatterie();
 			}
+
+		} else {
+
+			System.out
+					.println(this.nom
+							+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac. \r\n");
+			text = this.nom
+					+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.";
+			f.setText(text);
 		}
 
 	}
@@ -96,10 +109,10 @@ public class Robot extends Thread {
 	public void remplirBatterie() {
 		nbKac = 16;
 		this.nbCharge++;
-		
+
 	}
-	
-	public int getNbCharge(){
+
+	public int getNbCharge() {
 		return this.nbCharge;
 	}
 

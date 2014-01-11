@@ -1,121 +1,109 @@
 package fr.up10.miage.ProjetRobot;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.util.*;
 
 public class Station extends Thread {
-	private Robot[] filedAttente;
+	private ArrayList<Robot> filedAttente;
 	private Robot robotEncharge;
-	private int nbRobots;
 	private String text;
 	private Fichier f;
 
 	public Station(Fichier fichier) {
-		this.filedAttente = new Robot[3];
-		nbRobots = 0;
+
+		this.filedAttente = new ArrayList<Robot>();
 		this.f = fichier;
 	}
 
 	@SuppressWarnings("static-access")
-	public synchronized void run() {
-		try {
-			this.wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void run() {
+		while (true) {
 
-		while (robotEncharge != null) {
 			try {
-
-				System.out.println(robotEncharge.getNom()
-						+ " en train de recharger [...]");
-				text = robotEncharge.getNom() + " en train de recharger [...]"
-						+ "\r\n";
-				f.setText(text);
-				this.sleep(3000);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
+				attendre();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			robotEncharge.remplirBatterie();
-			System.out.println("Recharge du robot " + robotEncharge.getNom()
-					+ " terminé");
-			text += "Recharge du robot " + robotEncharge.getNom() + " terminé"
-					+ "\r\n";
-			f.setText(text);
+			while (!estVide()) {
+				robotEncharge = filedAttente.get(0);
+				synchronized (robotEncharge) {
+					text = robotEncharge.getNom()
+							+ " en train de recharger [...]" + "\r\n";
+					System.out.println(text);
+					f.setText(text);
+					try {
+						this.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					robotEncharge.remplirBatterie();
+					System.out.println("Recharge du robot "
+							+ robotEncharge.getNom() + " terminé");
+					text += "Recharge du robot " + robotEncharge.getNom()
+							+ " terminé" + "\r\n";
+					f.setText(text);
 
-			System.out.println("Le robot " + robotEncharge.getNom()
-					+ " s'est rechargé " + robotEncharge.getNbCharge()
-					+ " fois ");
-			text += "Le robot " + robotEncharge.getNom() + " s'est rechargé "
-					+ robotEncharge.getNbCharge() + " fois \r\n";
-			f.setText(text);
-
-			nbRobots = nbRobots - 1;
-			robotEncharge = filedAttente[0];
-			filedAttente[0] = filedAttente[1];
-			filedAttente[1] = filedAttente[2];
-			filedAttente[2] = null;
-
-			System.out.println(nbRobots + " ROBOTS EN STATION");
-			text = nbRobots + " ROBOTS EN STATION " + "\r\n";
-			f.setText(text);
-
-			if (robotEncharge == null) {
-				try {
-					this.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Le robot " + robotEncharge.getNom()
+							+ " s'est rechargé " + robotEncharge.getNbCharge()
+							+ " fois ");
+					text += "Le robot " + robotEncharge.getNom()
+							+ " s'est rechargé " + robotEncharge.getNbCharge()
+							+ " fois \r\n";
+					f.setText(text);
+					robotEncharge.notify();
 				}
+				MAJFile();
 			}
+		}
+	}
 
+	public synchronized void attendre() throws InterruptedException {
+		while (estVide()) {
+			wait();
 		}
 
 	}
 
-	/* Retour true si la station est pleine, false sinon */
+	public synchronized boolean estVide() {
+		return filedAttente.isEmpty();
+	}
+
+	public synchronized void MAJFile() {
+
+		for (int i = 0; i < filedAttente.size(); i++) {
+			if (i + 1 != filedAttente.size()) {
+				filedAttente.set(i, filedAttente.get(i + 1));
+			}
+
+		}
+		filedAttente.remove(filedAttente.size() - 1);
+
+	}
 
 	public boolean stationPleine() {
-		if (robotEncharge == null && filedAttente[0] == null
-				&& filedAttente[1] == null && filedAttente[2] == null) {
+		if (filedAttente.size() == 4) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	/* */
-	public synchronized void chargerRobot(Robot unRobot) {
-		if (nbRobots < 4) {
-			if (nbRobots == 0) {
-
-				robotEncharge = unRobot;
-
-				nbRobots++;
-
-			} else {
-
-				filedAttente[nbRobots - 1] = unRobot;
-				System.out.println(unRobot.getNom() + " en file d'attente");
-				nbRobots++;
-				text = unRobot.getNom() + " en file d'attente" + "\r\n";
-				f.setText(text);
-			}
-		} else {
-			System.out.println("La Station est pleine");
-			text = "La Station est pleine" + "\r\n";
-			f.setText(text);
-		}
-
-		f.ecrireFichier(f.getText());
-
-	}
 
 	public int getNbRobots() {
-		return nbRobots;
+		return filedAttente.size();
+	}
+
+	public synchronized void ajouter(Robot unRobot) {
+
+		filedAttente.add(unRobot);
+		System.out.println(unRobot.getNom() + " en Station");
+		System.out.println(filedAttente.size()
+				+ " ROBOTS en Station ********************");
+		text = unRobot.getNom() + " en Station" + "\r\n";
+		f.setText(text);
+		this.notify();
+
 	}
 
 }
