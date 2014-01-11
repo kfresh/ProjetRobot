@@ -3,6 +3,7 @@ package fr.up10.miage.ProjetRobot;
 public class Tache3 extends Tache {
 	@Override
 	public void tri() {
+		super.nbTache++;
 		int[] t=genererTableau();
 		{
 		    int cpt;

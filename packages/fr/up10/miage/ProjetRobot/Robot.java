@@ -10,17 +10,19 @@ public class Robot extends Thread {
 	private ArrayList<Tache> mesTaches;
 	private Station maStation;
 	private String text;
-	
+	private Fichier f;
+	private int nbCharge;
 
-	public Robot(String nom, Station maStation, Tache t, Tache t2, Tache t3) { // Constructeur
+	public Robot(String nom, Station maStation, Tache t, Tache t2, Tache t3,
+			Fichier fichier) {
 
 		this.nom = nom;
-
 		this.maStation = maStation;
 		this.mesTaches = new ArrayList<Tache>();
 		this.mesTaches.add(t);
 		this.mesTaches.add(t2);
 		this.mesTaches.add(t3);
+		this.f = fichier;
 	}
 
 	public void run() {
@@ -30,19 +32,37 @@ public class Robot extends Thread {
 
 				System.out.println(this.nom + " debute la tache "
 						+ this.mesTaches.get(i).getClass().getSimpleName());
-	
-				text =this.nom + " debute la tache "+ this.mesTaches.get(i).getClass().getSimpleName() ;
+
+				text = this.nom + " debute la tache "
+						+ this.mesTaches.get(i).getClass().getSimpleName()
+						+ "\r\n";
+
+				f.setText(text);
 
 				this.mesTaches.get(i).tri();
 				this.nbKac = nbKac - 4;
 				System.out.println("la tache "
 						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ " est terminï¿½e par " + this.nom);
-				text +="la tache "
+						+ " est terminé par " + this.nom);
+
+				text = "la tache "
 						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ " est terminï¿½e par " + this.nom +"\r\n";
+						+ " est terminé par " + this.nom + "\r\n";
+				f.setText(text);
+
+				System.out.println("la tache "
+						+ this.mesTaches.get(i).getClass().getSimpleName()
+						+ " a été réalisé "
+						+ this.mesTaches.get(i).getNbTache() + " fois");
+
+				text = "la tache "
+						+ this.mesTaches.get(i).getClass().getSimpleName()
+						+ " a été réalisé "
+						+ this.mesTaches.get(i).getNbTache() + " fois \r\n";
+				f.setText(text);
+
 				this.tenteRecharge();
-	
+
 			}
 		}
 	}
@@ -53,21 +73,21 @@ public class Robot extends Thread {
 			if ((maStation.getNbRobots() == 0) || nbKac <= 4) {
 
 				maStation.notify();
-				
-				
+
 				maStation.chargerRobot(this);
 
 			} else {
 
 				System.out
 						.println(this.nom
-								+ " peut entamer une nouvelle tache car le rechargement immÃ©diat est indisponible et quil dispose de suffisament de Kac.");
-				text += this.nom
-						+ " peut entamer une nouvelle tache car le rechargement immï¿½diat est indisponible et quil dispose de suffisament de Kac.";
+								+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.");
+				text = this.nom
+						+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.";
+				f.setText(text);
 			}
 		}
 
-	} 
+	}
 
 	public String getNom() {
 		return this.nom;
@@ -75,13 +95,12 @@ public class Robot extends Thread {
 
 	public void remplirBatterie() {
 		nbKac = 16;
+		this.nbCharge++;
+		
 	}
-	public String getText(){
-		return this.text;
+	
+	public int getNbCharge(){
+		return this.nbCharge;
 	}
-	public void setText(String t){
-		this.text += t;
-	}
-
 
 }

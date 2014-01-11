@@ -13,6 +13,7 @@ public class Tache5 extends Tache{
 
 	@Override
 	public void tri() {
+		super.nbTache++;
 		int[] t=genererTableau();
 	      for(int i = 0; i < t.length - 1; i++)
 	      {

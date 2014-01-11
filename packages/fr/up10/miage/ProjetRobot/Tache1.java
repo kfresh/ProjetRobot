@@ -13,6 +13,7 @@ public class Tache1 extends Tache{
 	
 	@Override
 	public void tri() {
+		super.nbTache++;
 		int[] t=genererTableau();
 		int fin,i; 
 		fin=(t.length -1); 
@@ -27,6 +28,7 @@ public class Tache1 extends Tache{
 				} fin=fin-1; 
 				} while((permut==true)&&(fin>=1)); 
 		}
+	
 
 
 

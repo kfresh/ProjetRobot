@@ -4,6 +4,7 @@ public class Tache4 extends Tache {
 
 	@Override
 	public void tri() {
+		super.nbTache++;
 		int taille = 74;
 		triDeShell(genererTableau(),taille);
 		
