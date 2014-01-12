@@ -87,6 +87,9 @@ public class Robot extends Thread {
 			} else {
 				System.out
 						.println("La station est pleine - Le robot utilise sa recharge de secours \r\n");
+				text = "La station est pleine - Le robot utilise sa recharge de secours \r\n";
+				f.setText(text);
+
 				this.remplirBatterie();
 			}
 

@@ -40,14 +40,14 @@ public class Station extends Thread {
 					robotEncharge.remplirBatterie();
 					System.out.println("Recharge du robot "
 							+ robotEncharge.getNom() + " terminé");
-					text += "Recharge du robot " + robotEncharge.getNom()
+					text = "Recharge du robot " + robotEncharge.getNom()
 							+ " terminé" + "\r\n";
 					f.setText(text);
 
 					System.out.println("Le robot " + robotEncharge.getNom()
 							+ " s'est rechargé " + robotEncharge.getNbCharge()
 							+ " fois ");
-					text += "Le robot " + robotEncharge.getNom()
+					text = "Le robot " + robotEncharge.getNom()
 							+ " s'est rechargé " + robotEncharge.getNbCharge()
 							+ " fois \r\n";
 					f.setText(text);
