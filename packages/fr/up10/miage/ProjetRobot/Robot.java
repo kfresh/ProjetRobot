@@ -29,40 +29,49 @@ public class Robot extends Thread {
 		while (true) {
 			for (int i = 0; i <= this.mesTaches.size() - 1; i++) {
 
-				System.out.println(this.nom + " debute la tache "
-						+ this.mesTaches.get(i).getClass().getSimpleName());
+				System.out.println(this.nom + " NIVEAU de batterie: " + nbKac
+						* 100 / 18 + " %");
 
-				text = this.nom + " debute la tache "
-						+ this.mesTaches.get(i).getClass().getSimpleName()
-						+ "\r\n";
-
+				text = this.nom + " NIVEAU de batterie: " + nbKac * 100 / 18
+						+ " % \r\n";
 				f.setText(text);
+
 				if (nbKac <= 4) {
 					System.err
-							.println("ATTENTION: Energie critique - Impossible d'effectuer une tache");
+							.println(this.nom
+									+ " ATTENTION: Energie critique - Impossible d'effectuer une tache");
 				} else {
+
+					System.out.println(this.nom + " debute la tache "
+							+ this.mesTaches.get(i).getClass().getSimpleName());
+
+					text = this.nom + " debute la tache "
+							+ this.mesTaches.get(i).getClass().getSimpleName()
+							+ "\r\n";
+
+					f.setText(text);
 					this.mesTaches.get(i).tri();
 					this.nbKac = nbKac - 4;
 					System.out.println("la tache "
 							+ this.mesTaches.get(i).getClass().getSimpleName()
-							+ " est terminé par " + this.nom + " \r\n");
+							+ " est terminÃ© par " + this.nom + " \r\n");
 
 					text = "la tache "
 							+ this.mesTaches.get(i).getClass().getSimpleName()
-							+ " est terminé par " + this.nom + "\r\n";
+							+ " est terminÃ© par " + this.nom + "\r\n";
 					f.setText(text);
 
 					System.out
 							.println("la tache "
 									+ this.mesTaches.get(i).getClass()
 											.getSimpleName()
-									+ " a été réalisé "
+									+ " a Ã©tÃ© rÃ©alisÃ© "
 									+ this.mesTaches.get(i).getNbTache()
 									+ " fois \r\n");
 
 					text = "la tache "
 							+ this.mesTaches.get(i).getClass().getSimpleName()
-							+ " a été réalisé "
+							+ " a Ã©tÃ© rÃ©alisÃ© "
 							+ this.mesTaches.get(i).getNbTache() + " fois \r\n";
 					f.setText(text);
 				}
@@ -97,9 +106,9 @@ public class Robot extends Thread {
 
 			System.out
 					.println(this.nom
-							+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac. \r\n");
+							+ " peut entamer une nouvelle tache car le rechargement immÃ©diat est indisponible et quil dispose de suffisament de Kac. \r\n");
 			text = this.nom
-					+ " peut entamer une nouvelle tache car le rechargement immédiat est indisponible et quil dispose de suffisament de Kac.";
+					+ " peut entamer une nouvelle tache car le rechargement immÃ©diat est indisponible et quil dispose de suffisament de Kac.";
 			f.setText(text);
 		}
 
@@ -110,13 +119,17 @@ public class Robot extends Thread {
 	}
 
 	public void remplirBatterie() {
-		nbKac = 16;
+		nbKac = 18;
 		this.nbCharge++;
 
 	}
 
 	public int getNbCharge() {
 		return this.nbCharge;
+	}
+
+	public void setNbKac(int k) {
+		nbKac = k;
 	}
 
 }

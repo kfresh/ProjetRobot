@@ -1,6 +1,6 @@
 package fr.up10.miage.ProjetRobot;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Station extends Thread {
 	private ArrayList<Robot> filedAttente;
@@ -39,16 +39,16 @@ public class Station extends Thread {
 					}
 					robotEncharge.remplirBatterie();
 					System.out.println("Recharge du robot "
-							+ robotEncharge.getNom() + " terminé");
+							+ robotEncharge.getNom() + " terminï¿½");
 					text = "Recharge du robot " + robotEncharge.getNom()
-							+ " terminé" + "\r\n";
+							+ " terminÃ©" + "\r\n";
 					f.setText(text);
 
 					System.out.println("Le robot " + robotEncharge.getNom()
-							+ " s'est rechargé " + robotEncharge.getNbCharge()
+							+ " s'est rechargÃ© " + robotEncharge.getNbCharge()
 							+ " fois ");
 					text = "Le robot " + robotEncharge.getNom()
-							+ " s'est rechargé " + robotEncharge.getNbCharge()
+							+ " s'est rechargÃ© " + robotEncharge.getNbCharge()
 							+ " fois \r\n";
 					f.setText(text);
 					robotEncharge.notify();
@@ -89,7 +89,6 @@ public class Station extends Thread {
 		}
 	}
 
-
 	public int getNbRobots() {
 		return filedAttente.size();
 	}
@@ -105,7 +104,6 @@ public class Station extends Thread {
 		f.setText(text);
 		f.ecrireFichier(f.getText());
 		this.notify();
-		
 
 	}
 
