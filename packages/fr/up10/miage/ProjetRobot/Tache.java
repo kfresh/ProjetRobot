@@ -16,11 +16,10 @@ public abstract class Tache {
 
 	}
 
-	public abstract void tri();
+	public abstract void tri(int[] tab);
 
 	public int getNbTache() {
 		return this.nbTache;
 	}
-	
 
 }

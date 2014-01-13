@@ -2,9 +2,8 @@ package fr.up10.miage.ProjetRobot;
 
 public class Tache2 extends Tache {
 	@Override
-	public void tri() {
+	public void tri(int[] t) {
 		super.nbTache++;
-		int[] t=genererTableau();
 		int longueur = t.length;
 		if (longueur > 0) {
 			triFusion(t, 0, longueur - 1);

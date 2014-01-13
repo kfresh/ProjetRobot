@@ -50,7 +50,8 @@ public class Robot extends Thread {
 							+ "\r\n";
 
 					f.setText(text);
-					this.mesTaches.get(i).tri();
+					this.mesTaches.get(i)
+							.tri(mesTaches.get(i).genererTableau());
 					this.nbKac = nbKac - 4;
 					System.out.println("la tache "
 							+ this.mesTaches.get(i).getClass().getSimpleName()
